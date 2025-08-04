@@ -1,0 +1,51 @@
+@{
+    Layout = "_Layout";
+}
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Equinox</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto">
+@{
+  var ctrl = ViewContext.RouteData.Values["controller"] as string;
+}
+    <li class="nav-item @(ctrl=="Club"?"active":"")"><a class="nav-link" asp-controller="Club" asp-action="List">Clubs</a></li>
+    <li class="nav-item @(ctrl=="Class"?"active":"")"><a class="nav-link" asp-controller="Class" asp-action="List">Classes</a></li>
+    <li class="nav-item @(ctrl=="Membership"?"active":"")"><a class="nav-link" asp-controller="Membership" asp-action="List">Membership</a></li>
+    <li class="nav-item @(ctrl=="PrivateClass"?"active":"")"><a class="nav-link" asp-controller="PrivateClass" asp-action="List">Private Training</a></li>
+</ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a asp-controller="Booking" asp-action="Index" class="nav-link">
+                            Bookings
+                        </a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="pt-4 container">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+
+    @RenderBody()
+</main>
+
+<footer class="mt-4">
+    <ul class="list-inline text-center">
+        <li class="list-inline-item"><a asp-controller="Home" asp-action="Contact">Contact us</a></li>
+        <li class="list-inline-item"><a asp-controller="Home" asp-action="Privacy">Privacy Policy</a></li>
+        <li class="list-inline-item"><a asp-controller="Home" asp-action="Terms">Terms & Condition</a></li>
+        <li class="list-inline-item"><a asp-controller="Home" asp-action="Cookie">Cookie Policies</a></li>
+    </ul>
+</footer>

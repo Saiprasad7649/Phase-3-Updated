@@ -1,0 +1,32 @@
+@model IEnumerable<Equinox.Models.Club>
+@{
+    ViewData["Title"] = "Manage Clubs";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Club</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var club in Model)
+        {
+            <tr>
+                <td>@club.Name</td>
+                <td>@club.PhoneNumber</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@club.ClubId" class="btn btn-sm btn-secondary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@club.ClubId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,17 @@
+@model Equinox.Models.ClassCategory
+@{
+    ViewData["Title"] = "Delete Class Category";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <h4>@Model.Name</h4>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ClassCategoryId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

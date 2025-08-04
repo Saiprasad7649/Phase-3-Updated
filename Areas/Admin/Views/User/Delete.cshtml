@@ -1,0 +1,22 @@
+@model Equinox.Models.User
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="mb-3">
+    <h4>@Model.Name (@Model.UserId)</h4>
+    <p>Email: @Model.Email<br />
+       Phone: @Model.PhoneNumber<br />
+       DOB: @Model.DOB.ToString("yyyy-MM-dd")<br />
+       Is Coach: @(Model.IsCoach ? "Yes" : "No")
+    </p>
+</div>
+
+<form asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="UserId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,67 @@
+@model Equinox.Models.ClassViewModel
+
+@{
+    ViewData["Title"] = "Class List";
+}
+
+<h1>Filter Classes</h1>
+
+<form method="get" asp-controller="Class" asp-action="List">
+    <div class="row mb-3">
+        <div class="col-md-5">
+            <label>Filter by Club:</label>
+            <select name="clubId" class="form-select" onchange="this.form.submit()">
+  <option value="all" selected="@(Model.ActiveClubId == "all")">All</option>
+  @foreach (var club in Model.Clubs)
+  {
+      <option value="@club.ClubId" selected="@(Model.ActiveClubId == club.ClubId.ToString())">
+        @club.Name
+      </option>
+  }
+</select>
+        </div>
+        <div class="col-md-5">
+            <label>Filter by Category:</label>
+            <select name="categoryId" class="form-select" onchange="this.form.submit()">
+  <option value="all" selected="@(Model.ActiveCategoryId == "all")">All</option>
+  @foreach (var cat in Model.Categories)
+  {
+      <option value="@cat.ClassCategoryId" selected="@(Model.ActiveCategoryId == cat.ClassCategoryId.ToString())">
+        @cat.Name
+      </option>
+  }
+</select>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+
+<h3>Available Classes</h3>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    @foreach (var c in Model.Classes)
+    {
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="~/images/@c.ClassPicture" class="card-img-top" alt="@c.Name" />
+                <div class="card-body">
+                    <h5 class="card-title">@c.Name</h5>
+                    <p class="card-text">
+                        <strong>Club:</strong> @c.Club.Name <br />
+                        <strong>Category:</strong> @c.ClassCategory.Name <br />
+                        <strong>Coach:</strong> @(c.User?.Name ?? "No coach assigned")
+                    </p>
+
+                    <form asp-controller="Booking" asp-action="Book" method="post" class="d-flex justify-content-between">
+                        <a asp-controller="Class" asp-action="Details" asp-route-id="@c.EquinoxClassId" class="btn btn-secondary me-2">Details</a>
+                        <input type="hidden" name="id" value="@c.EquinoxClassId" />
+                        <button type="submit" class="btn btn-primary">Book this Class</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>

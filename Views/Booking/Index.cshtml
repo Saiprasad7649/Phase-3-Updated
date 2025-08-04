@@ -1,0 +1,48 @@
+@model List<EquinoxClass>
+
+@{
+    ViewData["Title"] = "Your Bookings";
+}
+
+<h2>Your Booked Classes</h2>
+
+@if (Model.Count == 0)
+{
+    <p>You haven't booked any classes yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Class</th>
+                <th>Time</th>
+                <th>Day</th>
+                <th>Club</th>
+                <th>Category</th>
+                <th>Coach</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Time</td>
+                <td>@c.ClassDay</td>
+                <td>@c.Club.Name</td>
+                <td>@c.ClassCategory.Name</td>
+                <td>@c.User.Name</td>
+                <td>
+                    <form asp-action="Cancel" method="post">
+                        <input type="hidden" name="id" value="@c.EquinoxClassId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+<a asp-controller="Class" asp-action="List" class="btn btn-secondary mt-4">Back to Class List</a>

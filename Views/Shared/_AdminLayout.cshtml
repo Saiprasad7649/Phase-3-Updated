@@ -1,0 +1,60 @@
+@{
+  Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"] - Equinox Admin</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="Admin" asp-controller="Home" asp-action="Index">Equinox Admin</a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#adminNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="adminNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Site</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-4 container" style="min-height: 60vh;">
+        @if (TempData["Message"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["Message"]
+            </div>
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="bg-dark text-light mt-5 py-4 border-top">
+        <div class="container">
+            <div class="text-center mb-3">
+                <small>&copy; 2025 Equinox Admin</small>
+            </div>
+            <ul class="list-inline text-center mb-0">
+                <li class="list-inline-item"><a asp-area="" asp-controller="Home" asp-action="Contact" class="text-light text-decoration-none">Contact us</a></li>
+                <li class="list-inline-item text-muted">|</li>
+                <li class="list-inline-item"><a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-light text-decoration-none">Privacy Policy</a></li>
+                <li class="list-inline-item text-muted">|</li>
+                <li class="list-inline-item"><a asp-area="" asp-controller="Home" asp-action="Terms" class="text-light text-decoration-none">Terms & Condition</a></li>
+                <li class="list-inline-item text-muted">|</li>
+                <li class="list-inline-item"><a asp-area="" asp-controller="Home" asp-action="Cookie" class="text-light text-decoration-none">Cookie Policies</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

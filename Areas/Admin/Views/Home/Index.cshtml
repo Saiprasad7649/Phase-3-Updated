@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Clubs</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage club locations and information</p>
+                <a asp-area="Admin" asp-controller="Club" asp-action="Index" class="btn btn-primary">Manage Clubs</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Class Categories</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage class categories and types</p>
+                <a asp-area="Admin" asp-controller="ClassCategory" asp-action="Index" class="btn btn-primary">Manage Class Categories</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Users</h5>
+            </div>
+            <div class="card-body">
+                <p>Manage users, coaches and instructors</p>
+                <a asp-area="Admin" asp-controller="User" asp-action="Index" class="btn btn-primary">Manage Users</a>
+            </div>
+        </div>
+    </div>
+</div>

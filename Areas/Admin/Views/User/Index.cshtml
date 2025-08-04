@@ -1,0 +1,40 @@
+@model IEnumerable<Equinox.Models.User>
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New User</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>DOB</th>
+            <th>Is Coach?</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var u in Model)
+    {
+        <tr>
+            <td>@u.UserId</td>
+            <td>@u.Name</td>
+            <td>@u.Email</td>
+            <td>@u.PhoneNumber</td>
+            <td>@u.DOB.ToString("yyyy-MM-dd")</td>
+            <td>@(u.IsCoach ? "Yes" : "No")</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@u.UserId" class="btn btn-sm btn-secondary">Edit</a>
+                <a asp-action="Delete" asp-route-id="@u.UserId" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
